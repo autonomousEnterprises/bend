@@ -2,8 +2,8 @@ pragma solidity ^0.6.12;
 // SPDX-License-Identifier: Unlicensed
 
 import "./interfaces/IERC20.sol";
-import "./interfaces/IUniswapV2Router02.sol";
-import "./interfaces/IUniswapV2Factory.sol";
+import "./interfaces/IPangolinRouter.sol";
+import "./interfaces/IPangolinFactory.sol";
 
 import "./libraries/SafeMath.sol";
 import "./libraries/Address.sol";
@@ -39,8 +39,8 @@ contract Soon is Context, IERC20, Ownable {
     uint256 public _liquidityFee = 5;
     uint256 private _previousLiquidityFee = _liquidityFee;
 
-    IUniswapV2Router02 public immutable uniswapV2Router;
-    address public immutable uniswapV2Pair;
+    IPangolinRouter public immutable pangolinRouter;
+    address public immutable pangolinPair;
 
     bool inSwapAndLiquify;
     bool public swapAndLiquifyEnabled = true;
@@ -65,15 +65,15 @@ contract Soon is Context, IERC20, Ownable {
     constructor() public {
         _rOwned[_msgSender()] = _rTotal;
 
-        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(
-            0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F
+        IPangolinRouter pangolinRouter = IPangolinRouter(
+            0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106
         );
         // Create a uniswap pair for this new token
-        uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
-            .createPair(address(this), _uniswapV2Router.WETH());
+        pangolinPair = IPangolinFactory(pangolinRouter.factory())
+            .createPair(address(this), pangolinRouter.WAVAX());
 
         // set the rest of the contract variables
-        uniswapV2Router = _uniswapV2Router;
+        pangolinRouter = pangolinRouter;
 
         //exclude owner and this contract from fee
         _isExcludedFromFee[owner()] = true;
@@ -294,7 +294,7 @@ contract Soon is Context, IERC20, Ownable {
         emit SwapAndLiquifyEnabledUpdated(_enabled);
     }
 
-    //to recieve ETH from uniswapV2Router when swaping
+    //to recieve ETH from pangolinRouter when swaping
     receive() external payable {}
 
     function _reflectFee(uint256 rFee, uint256 tFee) private {
@@ -471,7 +471,7 @@ contract Soon is Context, IERC20, Ownable {
         if (
             overMinTokenBalance &&
             !inSwapAndLiquify &&
-            from != uniswapV2Pair &&
+            from != pangolinPair &&
             swapAndLiquifyEnabled
         ) {
             contractTokenBalance = numTokensSellToAddToLiquidity;
@@ -518,12 +518,12 @@ contract Soon is Context, IERC20, Ownable {
         // generate the uniswap pair path of token -> weth
         address[] memory path = new address[](2);
         path[0] = address(this);
-        path[1] = uniswapV2Router.WETH();
+        path[1] = pangolinRouter.WAVAX();
 
-        _approve(address(this), address(uniswapV2Router), tokenAmount);
+        _approve(address(this), address(pangolinRouter), tokenAmount);
 
         // make the swap
-        uniswapV2Router.swapExactTokensForETHSupportingFeeOnTransferTokens(
+        pangolinRouter.swapExactTokensForAVAXSupportingFeeOnTransferTokens(
             tokenAmount,
             0, // accept any amount of ETH
             path,
@@ -534,10 +534,10 @@ contract Soon is Context, IERC20, Ownable {
 
     function addLiquidity(uint256 tokenAmount, uint256 ethAmount) private {
         // approve token transfer to cover all possible scenarios
-        _approve(address(this), address(uniswapV2Router), tokenAmount);
+        _approve(address(this), address(pangolinRouter), tokenAmount);
 
         // add the liquidity
-        uniswapV2Router.addLiquidityETH{value: ethAmount}(
+        pangolinRouter.addLiquidityAVAX{value: ethAmount}(
             address(this),
             tokenAmount,
             0, // slippage is unavoidable
