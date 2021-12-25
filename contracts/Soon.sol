@@ -33,10 +33,10 @@ contract Soon is Context, IERC20, Ownable {
     string private _symbol = "SOON";
     uint8 private _decimals = 18;
 
-    uint256 public _taxFee = 5;
+    uint256 public _taxFee = 2;
     uint256 private _previousTaxFee = _taxFee;
 
-    uint256 public _liquidityFee = 5;
+    uint256 public _liquidityFee = 2;
     uint256 private _previousLiquidityFee = _liquidityFee;
 
     IPangolinRouter public immutable pangolinRouter;
