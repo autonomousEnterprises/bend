@@ -1,3 +1,5 @@
+pragma solidity >=0.6.12;
+
 interface IPangolinRouter {
     function factory() external pure returns (address);
     function WAVAX() external pure returns (address);
