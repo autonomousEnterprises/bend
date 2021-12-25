@@ -65,15 +65,17 @@ contract Soon is Context, IERC20, Ownable {
     constructor() public {
         _rOwned[_msgSender()] = _rTotal;
 
-        IPangolinRouter pangolinRouter = IPangolinRouter(
+        IPangolinRouter _pangolinRouter = IPangolinRouter(
             0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106
         );
         // Create a uniswap pair for this new token
-        pangolinPair = IPangolinFactory(pangolinRouter.factory())
-            .createPair(address(this), pangolinRouter.WAVAX());
+        pangolinPair = IPangolinFactory(_pangolinRouter.factory()).createPair(
+            address(this),
+            _pangolinRouter.WAVAX()
+        );
 
         // set the rest of the contract variables
-        pangolinRouter = pangolinRouter;
+        pangolinRouter = _pangolinRouter;
 
         //exclude owner and this contract from fee
         _isExcludedFromFee[owner()] = true;
@@ -294,7 +296,7 @@ contract Soon is Context, IERC20, Ownable {
         emit SwapAndLiquifyEnabledUpdated(_enabled);
     }
 
-    //to recieve ETH from pangolinRouter when swaping
+    //to recieve AVAX from pangolinRouter when swaping
     receive() external payable {}
 
     function _reflectFee(uint256 rFee, uint256 tFee) private {
@@ -496,16 +498,16 @@ contract Soon is Context, IERC20, Ownable {
         uint256 half = contractTokenBalance.div(2);
         uint256 otherHalf = contractTokenBalance.sub(half);
 
-        // capture the contract's current ETH balance.
-        // this is so that we can capture exactly the amount of ETH that the
-        // swap creates, and not make the liquidity event include any ETH that
+        // capture the contract's current AVAX balance.
+        // this is so that we can capture exactly the amount of AVAX that the
+        // swap creates, and not make the liquidity event include any AVAX that
         // has been manually sent to the contract
         uint256 initialBalance = address(this).balance;
 
-        // swap tokens for ETH
-        swapTokensForEth(half); // <- this breaks the ETH -> HATE swap when swap+liquify is triggered
+        // swap tokens for AVAX
+        swapTokensForAvax(half); // <- this breaks the AVAX -> HATE swap when swap+liquify is triggered
 
-        // how much ETH did we just swap into?
+        // how much AVAX did we just swap into?
         uint256 newBalance = address(this).balance.sub(initialBalance);
 
         // add liquidity to uniswap
@@ -514,7 +516,7 @@ contract Soon is Context, IERC20, Ownable {
         emit SwapAndLiquify(half, newBalance, otherHalf);
     }
 
-    function swapTokensForEth(uint256 tokenAmount) private {
+    function swapTokensForAvax(uint256 tokenAmount) private {
         // generate the uniswap pair path of token -> weth
         address[] memory path = new address[](2);
         path[0] = address(this);
@@ -525,7 +527,7 @@ contract Soon is Context, IERC20, Ownable {
         // make the swap
         pangolinRouter.swapExactTokensForAVAXSupportingFeeOnTransferTokens(
             tokenAmount,
-            0, // accept any amount of ETH
+            0, // accept any amount of AVAX
             path,
             address(this),
             block.timestamp
