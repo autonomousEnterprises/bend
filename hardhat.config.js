@@ -5,8 +5,8 @@ require("@nomiclabs/hardhat-waffle");
 require("hardhat-gas-reporter");
 require("solidity-coverage");
 
-const FORK_FUJI = true
-const FORK_MAINNET = false
+const FORK_FUJI = false
+const FORK_MAINNET = true
 const forkingData = FORK_FUJI ? {
   url: 'https://api.avax-test.network/ext/bc/C/rpc',
 } : FORK_MAINNET ? {
