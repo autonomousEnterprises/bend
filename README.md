@@ -1,4 +1,4 @@
-# Soon
+# Bend
 
 > Safemoon Fork on Avalanche
 
