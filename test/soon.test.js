@@ -1,12 +1,12 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("Soon", function () {
+describe("Bend", function () {
   it("Should be deployed", async function () {
-    const Soon = await ethers.getContractFactory("Soon");
-    const soon = await Soon.deploy();
+    const Bend = await ethers.getContractFactory("Bend");
+    const soon = await Bend.deploy();
     await soon.deployed();
 
-    expect(await soon.symbol()).to.equal("SOON");
+    expect(await soon.symbol()).to.equal("BEND");
   });
 });

@@ -11,7 +11,7 @@ import "./libraries/Address.sol";
 import "./Context.sol";
 import "./Ownable.sol";
 
-contract Soon is Context, IERC20, Ownable {
+contract Bend is Context, IERC20, Ownable {
     using SafeMath for uint256;
     using Address for address;
 
@@ -29,8 +29,8 @@ contract Soon is Context, IERC20, Ownable {
     uint256 private _rTotal = (MAX - (MAX % _tTotal));
     uint256 private _tFeeTotal;
 
-    string private _name = "Soon";
-    string private _symbol = "SOON";
+    string private _name = "Bend";
+    string private _symbol = "BEND";
     uint8 private _decimals = 18;
 
     uint256 public _taxFee = 2;
