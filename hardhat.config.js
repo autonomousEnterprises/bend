@@ -39,19 +39,13 @@ module.exports = {
     },
     localhost: {
       url: 'http://127.0.0.1:8545/ext/bc/C/rpc',
-      accounts:
-        ['0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'],
-    },
-    ropsten: {
-      url: process.env.ROPSTEN_URL || "",
-      accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      accounts: [],
     },
     fuji: {
       url: 'https://api.avax-test.network/ext/bc/C/rpc',
       gasPrice: 225000000000,
       chainId: 43113,
-      accounts: []
+      accounts: [ process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [] ]
     },
     mainnet: {
       url: 'https://api.avax.network/ext/bc/C/rpc',
