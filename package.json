@@ -1,10 +1,11 @@
 {
-  "name": "Soon",
+  "name": "Bend",
   "scripts": {
     "test": "NODE_ENV=test npx hardhat test",
     "compile": "npx hardhat compile",
     "deploy:localhost": "npx hardhat run --network localhost scripts/deploy.js",
     "deploy:hardhat": "npx hardhat run --network hardhat scripts/deploy.js",
+    "deploy:fuji": "npx hardhat run --network fuji scripts/deploy.js",
     "clean": "npx hardhat clean",
     "lint:sol": "solhint -f table contracts/**/*.sol",
     "format:sol": "./node_modules/.bin/prettier --write **/*.sol"
