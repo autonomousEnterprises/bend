@@ -5,8 +5,8 @@ require("@nomiclabs/hardhat-waffle");
 require("hardhat-gas-reporter");
 require("solidity-coverage");
 
-const FORK_FUJI = false
-const FORK_MAINNET = true
+const FORK_FUJI = true
+const FORK_MAINNET = false
 const forkingData = FORK_FUJI ? {
   url: 'https://api.avax-test.network/ext/bc/C/rpc',
 } : FORK_MAINNET ? {
@@ -45,7 +45,7 @@ module.exports = {
       url: 'https://api.avax-test.network/ext/bc/C/rpc',
       gasPrice: 225000000000,
       chainId: 43113,
-      accounts: [ process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [] ]
+      accounts: [ process.env.PRIVATE_KEY ]
     },
     mainnet: {
       url: 'https://api.avax.network/ext/bc/C/rpc',
@@ -62,3 +62,6 @@ module.exports = {
     apiKey: process.env.ETHERSCAN_API_KEY,
   },
 };
+
+// pangolinRouter Fuji 0x2D99ABD9008Dc933ff5c0CD271B88309593aB921
+// pangolinRouter Mainnet 0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106
