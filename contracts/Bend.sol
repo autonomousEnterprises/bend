@@ -66,7 +66,7 @@ contract Bend is Context, IERC20, Ownable {
         _rOwned[_msgSender()] = _rTotal;
 
         IPangolinRouter _pangolinRouter = IPangolinRouter(
-            0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106
+            0x2D99ABD9008Dc933ff5c0CD271B88309593aB921
         );
         // Create a uniswap pair for this new token
         pangolinPair = IPangolinFactory(_pangolinRouter.factory()).createPair(
