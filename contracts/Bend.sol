@@ -10,7 +10,7 @@ contract Bend is Context, ERC20Deflationary {
     string private name_ = "Bend";
     string private symbol_ = "BEND";
     uint8 private decimal_ = 4;
-    uint256 private tokenSupply_ = 32 * 10**6 * 10**4;
+    uint256 private tokenSupply_ = 12 * 10**9 * 10**4;
     uint8 private taxBurn_ = 2;
     uint8 private taxReward_ = 2;
     uint8 private taxLiquify_ = 2;
