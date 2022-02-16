@@ -30,12 +30,11 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: "0.8.4",
-  settings: { optimizer: true, runs: 2 },
+  solidity: "0.6.2",
   allowUnlimitedContractSize: true,
   networks: {
     hardhat: {
-      gasPrice: 225000000000,
+      gasPrice: 'auto',
       networkId: !forkingData ? 43112 : undefined, //Only specify a chainId if we are not forking
       forking: forkingData
     },
@@ -45,15 +44,15 @@ module.exports = {
     },
     fuji: {
       url: 'https://api.avax-test.network/ext/bc/C/rpc',
-      gasPrice: 225000000000,
+      gasPrice: 'auto',
       chainId: 43113,
       accounts: [ process.env.PRIVATE_KEY ]
     },
     mainnet: {
       url: 'https://api.avax.network/ext/bc/C/rpc',
-      gasPrice: 225000000000,
+      gasPrice: 'auto',
       chainId: 43114,
-      accounts: []
+      accounts: [ process.env.PRIVATE_KEY ]
     }
   },
   gasReporter: {

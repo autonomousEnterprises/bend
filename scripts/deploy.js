@@ -15,11 +15,11 @@ async function main() {
 
   // We get the contract to deploy
   const Bend = await hre.ethers.getContractFactory("Bend");
-  const soon = await Bend.deploy();
+  const bend = await Bend.deploy();
 
-  await soon.deployed();
+  await bend.deployed();
 
-  console.log("Bend deployed to:", soon.address);
+  console.log("Bend deployed to:", bend.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
