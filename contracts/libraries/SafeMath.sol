@@ -1,5 +1,5 @@
-pragma solidity ^0.6.12;
-// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.6.2;
+// SPDX-License-Identifier: MIT
 
 /**
  * @dev Wrappers over Solidity's arithmetic operations with added overflow
@@ -14,7 +14,7 @@ pragma solidity ^0.6.12;
  * Using this library instead of the unchecked operations eliminates an entire
  * class of bugs, so it's recommended to use it always.
  */
- 
+
 library SafeMath {
     /**
      * @dev Returns the addition of two unsigned integers, reverting on

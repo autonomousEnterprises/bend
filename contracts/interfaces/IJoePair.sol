@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
 
-pragma solidity >=0.5.0;
+pragma solidity >=0.6.2;
 
 interface IJoePair {
     event Approval(address indexed owner, address indexed spender, uint256 value);

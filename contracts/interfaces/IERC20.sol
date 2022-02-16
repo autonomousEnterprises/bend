@@ -1,5 +1,5 @@
-pragma solidity ^0.6.12;
-// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.6.2;
+// SPDX-License-Identifier: MIT
 
 interface IERC20 {
 

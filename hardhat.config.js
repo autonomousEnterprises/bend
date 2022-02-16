@@ -5,8 +5,8 @@ require("@nomiclabs/hardhat-waffle");
 require("hardhat-gas-reporter");
 require("solidity-coverage");
 
-const FORK_FUJI = true
-const FORK_MAINNET = false
+const FORK_FUJI = false
+const FORK_MAINNET = true
 const forkingData = FORK_FUJI ? {
   url: 'https://api.avax-test.network/ext/bc/C/rpc',
 } : FORK_MAINNET ? {
@@ -30,10 +30,11 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: "0.6.12",
+  solidity: "0.6.2",
+  allowUnlimitedContractSize: true,
   networks: {
     hardhat: {
-      gasPrice: 225000000000,
+      gasPrice: 'auto',
       networkId: !forkingData ? 43112 : undefined, //Only specify a chainId if we are not forking
       forking: forkingData
     },
@@ -43,15 +44,15 @@ module.exports = {
     },
     fuji: {
       url: 'https://api.avax-test.network/ext/bc/C/rpc',
-      gasPrice: 225000000000,
+      gasPrice: 'auto',
       chainId: 43113,
       accounts: [ process.env.PRIVATE_KEY ]
     },
     mainnet: {
       url: 'https://api.avax.network/ext/bc/C/rpc',
-      gasPrice: 225000000000,
+      gasPrice: 'auto',
       chainId: 43114,
-      accounts: []
+      accounts: [ process.env.PRIVATE_KEY ]
     }
   },
   gasReporter: {
