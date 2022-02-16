@@ -34,7 +34,7 @@ module.exports = {
   allowUnlimitedContractSize: true,
   networks: {
     hardhat: {
-      gasPrice: 'auto',
+      gasPrice: 225000000000,
       networkId: !forkingData ? 43112 : undefined, //Only specify a chainId if we are not forking
       forking: forkingData
     },
@@ -44,13 +44,13 @@ module.exports = {
     },
     fuji: {
       url: 'https://api.avax-test.network/ext/bc/C/rpc',
-      gasPrice: 'auto',
+      gasPrice: 225000000000,
       chainId: 43113,
       accounts: [ process.env.PRIVATE_KEY ]
     },
     mainnet: {
       url: 'https://api.avax.network/ext/bc/C/rpc',
-      gasPrice: 'auto',
+      // gasPrice: 1125000000000,
       chainId: 43114,
       accounts: [ process.env.PRIVATE_KEY ]
     }
