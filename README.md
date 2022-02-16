@@ -23,4 +23,4 @@ npx solhint 'contracts/**/*.sol' --fix
 
 ## Contracts
 
-[0x9bc12015b31e937dc984786d56beb931285fe3c7](https://snowtrace.io/address/0x9bc12015b31e937dc984786d56beb931285fe3c7)
+[0x9bc12015b31e937dc984786d56beb931285fe3c7](https://snowtrace.io/token/0x9bc12015b31e937dc984786d56beb931285fe3c7)
