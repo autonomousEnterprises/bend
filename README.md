@@ -1,12 +1,6 @@
 # Bend
 
-> Safemoon Fork on Avalanche
-
-This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
-
-The project comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts. It also comes with a variety of other tools, preconfigured to work with the project code.
-
-Try running some of the following tasks:
+> Hyper Deflationary Reflection Tokenomics
 
 ```shell
 npx hardhat accounts
@@ -29,6 +23,4 @@ npx solhint 'contracts/**/*.sol' --fix
 
 ## Contracts
 
-### Testnet
-
-Bend - 0x99e425319f1561f0A52e2b31E05eeDA146F5618f
+[0x9bc12015b31e937dc984786d56beb931285fe3c7](https://snowtrace.io/address/0x9bc12015b31e937dc984786d56beb931285fe3c7)
