@@ -1,3 +1,9 @@
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.0;
+
+import './IJoeRouter01.sol';
+
 interface IJoeRouter02 is IJoeRouter01 {
     function removeLiquidityAVAXSupportingFeeOnTransferTokens(
         address token,
